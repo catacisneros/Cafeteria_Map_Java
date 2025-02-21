@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Cafeteria Reservation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin: 20px 0;
+            font-size: 2.5em;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        .reservation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .reservation-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .reservation-item p {
+            margin-bottom: 8px;
+        }
+
+        .cancel-btn {
+            background: #dc3545;
+            padding: 8px 16px;
+            margin-top: 10px;
+        }
+
+        .cancel-btn:hover {
+            background: #bb2d3b;
+        }
+
+        .meal-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .meal-type.breakfast { background: #e3f2fd; color: #1565c0; }
+        .meal-type.lunch { background: #f3e5f5; color: #7b1fa2; }
+        .meal-type.dinner { background: #fce4ec; color: #c2185b; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ Campus Cafeteria Reservation</h1>
+        
+        <div class="card">
+            <h2>Make a Reservation</h2>
+            <div class="form-group">
+                <label for="studentId">Student ID</label>
+                <input type="text" id="studentId" placeholder="Enter your student ID" required>
+            </div>
+            <div class="form-group">
+                <label for="reservationDate">Date</label>
+                <input type="date" id="reservationDate" required>
+            </div>
+            <div class="form-group">
+                <label for="reservationTime">Time</label>
+                <input type="time" id="reservationTime" required>
+            </div>
+            <div class="form-group">
+                <label for="mealType">Meal Type</label>
+                <select id="mealType" required>
+                    <option value="BREAKFAST">Breakfast (7:00 AM - 10:00 AM)</option>
+                    <option value="LUNCH">Lunch (11:30 AM - 2:30 PM)</option>
+                    <option value="DINNER">Dinner (5:30 PM - 9:00 PM)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tableNumber">Table Number</label>
+                <input type="number" id="tableNumber" min="1" max="50" placeholder="Choose table 1-50" required>
+            </div>
+            <button onclick="makeReservation()">Reserve Now</button>
+        </div>
+
+        <div class="card">
+            <h2>Your Reservations</h2>
+            <div id="reservationsList" class="reservation-grid"></div>
+        </div>
+    </div>
+
+    <script src="js/reservation.js"></script>
+</body>
+</html> 
